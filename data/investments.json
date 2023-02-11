@@ -1,0 +1,88 @@
+{
+    "investments": [
+        {
+            "name": "Вила в Еленския Балкан",
+            "description": "Красива двуетажна къща с просторен двор в Еленския Балкан. Съвършена за почивки през лятото и уикендите и за remote работа.",
+            "base_price": 0,
+            "type_investment": 2
+        },
+        {
+            "name": "Апартамент в затворен комплекс в Слънчев бряг",
+            "description": "",
+            "base_price": 0,
+            "type_investment": 2
+        },
+        {
+            "name": "Малък апартамент в София",
+            "description": "",
+            "base_price": 0,
+            "type_investment": 2
+        },
+        {
+            "name": "Бунгало на Халкидики",
+            "description": "",
+            "base_price": 0,
+            "type_investment": 2
+        },
+        {
+            "name": "Акции на крипто стартъп",
+            "description": "Има шанс да спечелите супер много пари. Има шанс и ГДБОП да се окажат замесени. Изборът си е ваш.",
+            "base_price": 0,
+            "type_investment": 1
+        },
+        {
+            "name": "Акции на голяма технологична компания",
+            "description": "",
+            "base_price": 0,
+            "type_investment": 1
+        },
+        {
+            "name": "Акции в компания за етно хотели",
+            "description": "",
+            "base_price": 0,
+            "type_investment": 1
+        },
+        {
+            "name": "Инвестиция в AI стартъп",
+            "description": "Чува се, че ще бъде купен от Google, за добро или лошо.",
+            "base_price": 0,
+            "type_investment": 1
+        },
+        {
+            "name": "Участък от тих, неохраняван плаж",
+            "description": "",
+            "base_price": 0,
+            "type_investment": 3
+        },
+        {
+            "name": "Нива в Добруджа",
+            "description": "",
+            "base_price": 0,
+            "type_investment": 3
+        },
+        {
+            "name": "Горски участък в Родопите",
+            "description": "Чудесно място, залесено и спокойно. Ако чувате незаконни дървосекачи, най-вериятно сте прави. Препоръчваме мечи капани.",
+            "base_price": 0,
+            "type_investment": 3
+        },
+        {
+            "name": "Розова градина в Казанлъшко",
+            "description": "",
+            "base_price": 0,
+            "type_investment": 3
+        },
+        {
+            "name": "Лозе в Ямбол",
+            "description": "",
+            "base_price": 0,
+            "type_investment": 3
+        },
+        {
+            "name": "",
+            "description": "",
+            "base_price": 0,
+            "type_investment": ""
+        }
+    ]
+}

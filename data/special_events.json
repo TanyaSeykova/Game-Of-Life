@@ -1,0 +1,38 @@
+{
+    "special_events": [
+        {
+            "name": "Сватба",
+            "description": "",
+            "happiness": 500,
+            "money": -10000,
+            "requirements": {
+                "relationship_status": [2]
+            }
+        },
+        {
+            "name": "Бебе",
+            "description": "",
+            "happiness": 1500,
+            "money": -15000,
+            "requirements": {
+                "relationship_status": [2, 3]
+            }
+        },
+        {
+            "name": "Околосветско пътешествие",
+            "description": "",
+            "happiness": 1000,
+            "money": -10000,
+            "requirements": {}
+        },
+        {
+            "name": "Бал на детето",
+            "description": "",
+            "happiness": 200,
+            "money": -2000,
+            "requirements": {
+                "min_num_children": 1
+            }
+        }
+    ]
+}

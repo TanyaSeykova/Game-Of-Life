@@ -1,16 +1,18 @@
-from enum import Enum
+from enum import IntEnum
+import json
 import random
+from entity import people
 
-class Education(Enum):
+class Education(IntEnum):
     UNIVERSITY = 1
     COURSES = 2
     NONE = 3
 
 class Job:
-    def __init__(self, name, base_salary, required_qualification):
+    def __init__(self, name: str, base_salary: int, required_qualification: Education):
         self.name = name
         self.base_salary = base_salary
-        self.growth_index = round(random.uniform(1.01, 1.5), 2)
+        self.growth_index = round(random.uniform(1.1, 1.5), 2)
         self.required_qualification = required_qualification
 
     def is_qualified(self, qualification) -> bool:
@@ -20,13 +22,24 @@ class Job:
     
     def get_current_salary(self, years_worked):
         return self.base_salary * pow(self.growth_index, years_worked)
+    
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "base_salary": self.base_salary,
+            "growth_index": self.growth_index,
+            "required_qualification": self.required_qualification
+        }
+    
+    def to_json(self):
+        return json.dumps(self.to_dict())
 
 class Event:
     def __init__(self, name, description):
         self.name = name
         self.description = description
 
-class Type_Investment(Enum):
+class Type_Investment(IntEnum):
     STOCK = 1
     REAL_ESTATE = 2
     LAND = 3
@@ -40,25 +53,63 @@ class Investment(Event):
     
     def get_current_value(self, years_owned):
         return self.base_price * pow(self.growth_index, years_owned)
+    
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "description": self.description,
+            "base_price": self.base_price,
+            "growth_index": self.growth_index,
+            "type_investment": self.type_investment.value
+        }
+
+    def to_json(self):
+        return json.dumps(self.to_dict())
 
 class Item(Event):
-    def __init__(self, name, description, image, happiness, money):
+    def __init__(self, name: str, description: str, image: str, happiness: str, money: str):
         super().__init__(name, description)
         self.image = image
         self.happiness = happiness
         self.money = money
+    
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "description": self.description,
+            "image": self.image,
+            "happiness": self.happiness,
+            "money": self.money
+        }
 
-class Side_Effect(Enum):
+    def to_json(self):
+        return json.dumps(self.to_dict())
+
+class Side_Effect(IntEnum):
     LOSE_STOCK = 1
     LOSE_REAL_ESTATE = 2
     LOSE_LAND = 3
+    NONE = 4
 
-class Misfortunes(Event):
-    def __init__(self, name, description, happiness, money, side_effects):
+class Misfortune(Event):
+    def __init__(self, name: str, description: str, happiness: int, money: int, side_effects: Side_Effect):
         super().__init__(name, description)
         self.happiness = happiness
         self.money = money
         self.side_effects = side_effects
+    
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "description": self.description,
+            "happiness": self.happiness,
+            "money": self.money,
+            "side_effects": self.side_effects
+        }
+
+    def to_json(self):
+        return json.dumps(self.to_dict())
+
 
 class Special_Event(Event):
     def __init__(self, name, description, happiness, money, requirements):
@@ -66,4 +117,30 @@ class Special_Event(Event):
         self.happiness = happiness
         self.money = money
         self.requirements = requirements
+        
+    def can_have_event(self, player: people.Player):
+        if self.requirements == {}:
+            return True
+        
+        if self.requirements["relationship_status"]:
+            if player.relationship not in self.requirements["relationship_status"]:
+                return False
+            
+        if self.requirements["min_num_children"]:
+            if player.children < self.requirements["min_num_children"]:
+                return False
+            
+        return True
 
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "description": self.description,
+            "happiness": self.happiness,
+            "money": self.money,
+            "requirements": self.requirements
+        }
+
+    def to_json(self):
+        return json.dumps(self.to_dict())
+        

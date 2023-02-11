@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/index_styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="../static/js/start_page.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Играта живот</h1>
+    <main>
+
+        <section class="player-section">
+            <label for="player_1_name">Име на играча: </label>
+            <input type="text" name="player_1_name" id="player_1_name">
+            <label for="player_1_symbol">Играч: </label>
+            <select name="player_1_symbol" id="player_1_symbol">
+                <option value="smiley_normal">😃</option>
+                <option value="smiley_angel">😇</option>
+                <option value="smiley_devil">😈</option>
+                <option value="smiley_hearts">😍</option>
+                <option value="smiley_glasses">😎</option>
+                <option value="smiley_blush">😊</option>
+                <option value="smiley_wink">😉</option>
+            </select>
+            <label for="player_1_preference">Предпочитания: </label>
+            <select name="player_1_preference" id="player_1_preference">
+                <option value="men">Мъже</option>
+                <option value="women">Жени</option>
+                <option value="both">И двете</option>
+            </select>
+        </section>
+        <section class="player-section">
+            <label for="player_2_name">Име на играча: </label>
+            <input type="text" name="player_2_name" id="player_2_name">
+            <label for="player_2_symbol">Играч: </label>
+            <select name="player_2_symbol" id="player_2_symbol">
+                <option value="smiley_normal">😃</option>
+                <option value="smiley_angel">😇</option>
+                <option value="smiley_devil">😈</option>
+                <option value="smiley_hearts">😍</option>
+                <option value="smiley_glasses">😎</option>
+                <option value="smiley_blush">😊</option>
+                <option value="smiley_wink">😉</option>
+            </select>
+            <label for="player_2_preference">Предпочитания: </label>
+            <select name="player_2_preference" id="player_2_preference">
+                <option value="men">Мъже</option>
+                <option value="women">Жени</option>
+                <option value="both">И двете</option>
+            </select>
+        </section>
+        <button id="play_button">Играй!</button>
+    </main>
+</body>
+</html>

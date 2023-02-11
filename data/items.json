@@ -1,0 +1,25 @@
+{
+    "items": [
+        {
+            "name": "Картина на български художник",
+            "description": "Човекът няма да стане следващия Ван Гог, но картината е цветна и ще стои чудосно в хола.",
+            "image": "https://dea-art.com/show_img.php?u=22699&i=56716&s=big",
+            "happiness": 50,
+            "money": -200
+        },
+        {
+            "name": "Диван от ИКЕА",
+            "description": "Следващата най-използвана мебел вкъщи след леглото и тоалетната. Голям и удобен, в типичен скандинавски минималистичен стил.",
+            "image": "https://ikeabg.azureedge.net/images/510x510/1/variantimages/49320043/0.JPG",
+            "happiness": 100,
+            "money": -2000
+        },
+        {
+            "name": "Фикус",
+            "description": "Друго си е като има малко зелено вкъщи. Само не забравяй да го поливаш.",
+            "image": "https://ficusplant.org/wp-content/uploads/2020/12/fikus-kauchukonosnyy-sort-robusta_-2-300x300-1.jpg",
+            "happiness": 10,
+            "money": -10
+        }
+    ]
+}

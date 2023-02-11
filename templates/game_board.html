@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/game_board_stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="../static/js/game_board_script.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Играта живот</h1>
+    <section id="main">
+        <section id="player_1_contol" class="player_control">
+            <article id="player_1_data">
+                <p>Име: <span id="name_span_1" class="data_span"></span></p>
+                <p>Символ: <span id="symbol_span_1" class="data_span"></span></p>
+                <p>Пари: <span id="money_span_1" class="data_span"></span></p>
+                <p>Щастие: <span id="happiness_span_1" class="data_span"></span></p>
+                <p>Образование: <span id="education_span_1" class="data_span"></span></p>
+                <p>Професия: <span id="job_span_1" class="data_span"></span></p>
+                <p>Години на професия: <span id="job_years_span_1" class="data_span"></span></p>
+                <p>Инвестиции: <span id="investments_span_1" class="data_span"></span></p>
+                <p>Обвързаност: <span id="relationship_span_1" class="data_span"></span></p>
+                <p>Брой деца: <span id="children_span_1" class="data_span"></span></p>
+            </article>
+            <article id="player_1_roll_section">
+                <button id="button_1_roll" class="button_roll">Хвърли</button>
+                <input type="text" id="result_roll_1" class="result_roll" readonly disabled>
+            </article>
+        </section>
+        <section id="board_section">
+            <table id="board_table">
+                <tr>
+                    <td class="red">1</td>
+                    <td class="orange">2</td>
+                    <td class="yellow">3</td>
+                    <td class="green">4</td>
+                    <td class="blue">5</td>
+                    <td class="indigo">6</td>
+                    <td class="violet">7</td>
+                </tr>
+                <tr>
+                    <td class="violet">14</td>
+                    <td class="red">13</td>
+                    <td class="orange">12</td>
+                    <td class="yellow">11</td>
+                    <td class="green">10</td>
+                    <td class="blue">9</td>
+                    <td class="indigo">8</td>
+                </tr>
+                <tr>
+                    <td class="indigo">15</td>
+                    <td class="violet">16</td>
+                    <td class="red">17</td>
+                    <td class="orange">18</td>
+                    <td class="yellow">19</td>
+                    <td class="green">20</td>
+                    <td class="blue">21</td>
+                </tr>
+                <tr>
+                    <td class="blue">28</td>
+                    <td class="indigo">27</td>
+                    <td class="violet">26</td>
+                    <td class="red">25</td>
+                    <td class="orange">24</td>
+                    <td class="yellow">23</td>
+                    <td class="green">22</td>
+                </tr>
+                <tr>
+                    <td class="green">29</td>
+                    <td class="blue">30</td>
+                    <td class="indigo">31</td>
+                    <td class="violet">32</td>
+                    <td class="red">33</td>
+                    <td class="orange">34</td>
+                    <td class="yellow">35</td>
+                </tr>
+                <tr>
+                    <td class="yellow">42</td>
+                    <td class="green">41</td>
+                    <td class="blue">40</td>
+                    <td class="indigo">39</td>
+                    <td class="violet">38</td>
+                    <td class="red">37</td>
+                    <td class="orange">36</td>
+                </tr>
+                <tr>
+                    <td class="orange">43</td>
+                    <td class="yellow">44</td>
+                    <td class="green">45</td>
+                    <td class="blue">46</td>
+                    <td class="indigo">47</td>
+                    <td class="violet">48</td>
+                    <td class="red">49</td>
+                </tr>
+            </table>
+        </section>
+        <section id="player_2_contol" class="player_control">
+            <article id="player_2_data">
+                <p>Име: <span id="name_span_2" class="data_span"></span></p>
+                <p>Символ: <span id="symbol_span_2" class="data_span"></span></p>
+                <p>Пари: <span id="money_span_2" class="data_span"></span></p>
+                <p>Щастие: <span id="happiness_span_2" class="data_span"></span></p>
+                <p>Образование: <span id="education_span_2" class="data_span"></span></p>
+                <p>Професия: <span id="job_span_2" class="data_span"></span></p>
+                <p>Години на професия: <span id="job_years_span_2" class="data_span"></span></p>
+                <p>Инвестиции: <span id="investments_span_2" class="data_span"></span></p>
+                <p>Обвързаност: <span id="relationship_span_2" class="data_span"></span></p>
+                <p>Брой деца: <span id="children_span_2" class="data_span"></span></p>
+            </article>
+            <article id="player_2_roll_section">
+                <button id="button_2_roll" class="button_roll">Хвърли</button>
+                <input type="text" id="result_roll_2" class="result_roll" readonly disabled>
+            </article>
+        </section>
+    </section>
+    <section id="choices">
+        <section id="choices_education" class="choices_section_class" style="display: none;">
+            <h3>Образование</h3>
+            <section class="choices_class">
+                <article id="choices_education_none">
+                    <p>Без</p>
+                    <p>Описание</p>
+                    <p>+3000 лева</p>
+                    <button id="button_choices_education_none">Избери</button>
+                </article>
+                <article id="choices_education_courses">
+                    <p>Курсове</p>
+                    <p>Описание</p>
+                    <p>-1000 лева</p>
+                    <button id="button_choices_education_courses">Избери</button>
+                </article>
+                <article id="choices_education_university">
+                    <p>Университет</p>
+                    <p>Описание</p>
+                    <p>-3500 лева</p>
+                    <button id="button_choices_education_university">Избери</button>
+                </article>
+            </section>
+        </section>
+        <section id="choices_investment" class="choices_section_class" style="display: none;">
+            <h3>Инвестиции</h3>
+            <section class="choices_class">
+                <article id="choices_investment_1">
+                    <p id="investment_name_1"></p>
+                    <p id="investment_description_1"></p>
+                    <p id="investment_price_1"></p>
+                    <p id="investment_type_1"></p>
+                    <button id="button_choices_investment_1">Инвестирай</button>
+                </article>
+                <article id="choices_investment_2">
+                    <p id="investment_name_2"></p>
+                    <p id="investment_description_2"></p>
+                    <p id="investment_price_2"></p>
+                    <p id="investment_type_2"></p>
+                    <button id="button_choices_investment_2">Инвестирай</button>
+                </article>
+                <article id="choices_investment_3">
+                    <p id="investment_name_3"></p>
+                    <p id="investment_description_3"></p>
+                    <p id="investment_price_3"></p>
+                    <p id="investment_type_3"></p>
+                    <button id="button_choices_investment_3">Инвестирай</button>
+                </article>
+            </section>
+            <button id="skip_investment">Пропусни</button>
+        </section>
+        <section id="choices_item" class="choices_section_class" style="display: none;">
+            <h3>Покупки</h3>
+            <section class="choices_class">
+                <article id="choices_item_1">
+                    <p id="item_name_1"></p>
+                    <p id="item_description_1"></p>
+                    <img src="" id="item_image_1">
+                    <p id="item_happiness_1"></p>
+                    <p id="item_price_1"></p>
+                    <button id="button_choices_item_1">Купи</button>
+                </article>
+                <article id="choices_item_2">
+                    <p id="item_name_2"></p>
+                    <p id="item_description_2"></p>
+                    <img src="" id="item_image_2">
+                    <p id="item_happiness_2"></p>
+                    <p id="item_price_2"></p>
+                    <button id="button_choices_item_2">Купи</button>
+                </article>
+                <article id="choices_item_3">
+                    <p id="item_name_3"></p>
+                    <p id="item_description_3"></p>
+                    <img src="" id="item_image_3">
+                    <p id="item_happiness_3"></p>
+                    <p id="item_price_3"></p>
+                    <button id="button_choices_item_3">Купи</button>
+                </article>
+            </section>
+            <button id="skip_item">Пропусни</button>
+        </section>
+        <section id="choices_job" class="choices_section_class" style="display: none;">
+            <h3>Професия</h3>
+            <section class="choices_class">
+                <article id="choices_job_1">
+                    <p id="job_name_1"></p>
+                    <p id="job_money_1"></p>
+                    <button id="button_choices_job_1">Избери</button>
+                </article>
+                <article id="choices_job_2">
+                    <p id="job_name_2"></p>
+                    <p id="job_money_2"></p>
+                    <button id="button_choices_job_2">Избери</button>
+                </article>
+                <article id="choices_job_3">
+                    <p id="job_name_3"></p>
+                    <p id="job_money_3"></p>
+                    <button id="button_choices_job_3">Избери</button>
+                </article>
+            </section>
+        </section>
+        <section id="choices_people" class="choices_section_class" style="display: none;">
+            <h3>Връзка</h3>
+            <section class="choices_class">
+                <article id="choices_people_1">
+                    <p id="people_name_1"></p>
+                    <p id="people_description_1"></p>
+                    <button id="button_choices_people_1">Избери</button>
+                </article>
+                <article id="choices_people_2">
+                    <p id="people_name_2"></p>
+                    <p id="people_description_2"></p>
+                    <button id="button_choices_people_2">Избери</button>
+                </article>
+                <article id="choices_people_3">
+                    <p id="people_name_3"></p>
+                    <p id="people_description_3"></p>
+                    <button id="button_choices_people_3">Избери</button>
+                </article>
+            </section>
+            <button id="skip_people">Пропусни</button>
+        </section>
+        <section id="choices_misfortune" class="choices_section_class" style="display: none;">
+            <h3>Нещастие</h3>
+            <section class="choices_class">
+                <article id="choices_misfortune">
+                    <p id="misfortune_name"></p>
+                    <p id="misfortune_description"></p>
+                    <p id="misfortune_money"></p>
+                    <p id="misfortune_side_effect"></p>
+                </article>
+            </section>
+        </section>
+        <section id="choices_special_event" class="choices_section_class" style="display: none;">
+            <h3>Специално събитие</h3>
+            <section class="choices_class">
+                <article id="choices_special_event">
+                    <p id="special_event_name"></p>
+                    <p id="special_event_description"></p>
+                    <p id="special_event_happiness"></p>
+                    <p id="special_event_money"></p>
+                </article>
+            </section>
+            <button id="skip_special_event">Пропусни</button>
+        </section>
+
+
+    </section>
+</body>
+
+</html>

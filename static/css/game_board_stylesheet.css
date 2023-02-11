@@ -1,0 +1,62 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: unset;
+}
+#board_section{
+    width: fit-content;
+}
+#board_table{
+    width: 35em;
+    height: 35em;
+}
+td {
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.red{
+    background-color: #e53935;
+}
+.orange{
+    background-color: #ffb74d;
+}
+.yellow{
+    background-color: #ffee58;
+}
+.green{
+    background-color: #388e5a;
+}
+.blue{
+    background-color: #42a5f5;
+}
+.indigo{
+    background-color: #8756d5;
+}
+.violet{
+    background-color: #ea9bd7;
+}
+
+#choices{
+    display: flex;
+}
+
+.choices_section_class {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.choices_class {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
