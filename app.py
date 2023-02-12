@@ -15,6 +15,7 @@ player1: people.Player = None
 player2: people.Player = None
 game_board_var: board.Board = None
 initializer_var = initializer.Initializer()
+current_choices = None
 
 
 @app.route('/')
@@ -43,7 +44,7 @@ def redirect_game_board():
 def game_board():
     global game_board_var
     game_board_var = board.Board(initializer_var)
-    return jsonify({"player1": player1.toJSON(), "player2": player2.toJSON()})
+    return jsonify({"player1": player1.to_json(), "player2": player2.to_json()})
 
 
 @app.route('/roll_and_give_choices', methods=["POST"])
@@ -51,22 +52,37 @@ def roll_and_give_choices():
     data = request.get_json()
     roll = play_game.roll_dice()
     player_turn = cmnmapper.requestToPlayerTurn(data)
+    global current_choices
     if player_turn == 1:
+        current_choices = game_board_var.get_choices(player1, roll)
+        result = jsonify({"generated_choices" : current_choices, "position_player": player1.position, "rolled" : roll})
         player1.position += roll
         if player1.position > 49:
             player1.position = 49
-        return jsonify({"generated_choices" : game_board_var.get_choices(player1, roll), "position_player": player1.position, "rolled" : roll})
+        return result
     else:
+        current_choices = game_board_var.get_choices(player2, roll)
+        result = jsonify({"generated_choices" : current_choices, "position_player": player2.position, "rolled" : roll})
         player2.position += roll
         if player2.position > 49:
             player2.position = 49
-        return jsonify({"generated_choices" : game_board_var.get_choices(player2, roll), "position_player": player2.position, "rolled" : roll})
+        return result
     
         
 @app.route('/get_players')
 def get_players():
-    return jsonify({"player1": player1.toJSON(), "player2": player2.toJSON()})
+    return jsonify({"player1": player1.to_json(), "player2": player2.to_json()})
 
+@app.route("/process_choice", methods=["POST"])
+def process_choice():
+    data = request.get_json()
+    player_turn = cmnmapper.requestToPlayerTurn(data)
+    index_choice = data["index_choice"]
+    if player_turn == 1:
+        player1.process_choice(current_choices, index_choice)
+    else:
+        player2.process_choice(current_choices, index_choice)
+    return jsonify({"status" : "success"})
 
 if __name__ == '__main__':
     app.run(debug=True)

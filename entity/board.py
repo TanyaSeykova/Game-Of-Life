@@ -46,7 +46,7 @@ class Board():
 
     def get_random_jobs(self, player: people.Player):
         matched_jobs = self.match_jobs(player.education)
-        choices = random.choices(matched_jobs, k=3)
+        choices = random.sample(matched_jobs, k=3)
         choices = [j.to_dict() for j in choices]
         return {
             "type_choice": "jobs",
@@ -54,15 +54,21 @@ class Board():
         }
 
     def get_random_investments(self):
-        choices = random.choices(self.investments, k=3)
+        
+        choices = random.sample(self.investments, k=3)
+        print("CHOICES IN INVESTMENT: ", choices)
         choices = [i.to_dict() for i in choices]
+        print("CHOICES IN INVESTMENT AFTER: ", choices)
         return {
             "type_choice": "investments",
             "choices": choices
         }
 
     def get_random_items(self):
-        choices = random.choices(self.items, k=3)
+        
+        choices = random.sample(self.items, k=3)
+        print("CHOICES IN ITEMS: ", choices)
+        
         choices = [i.to_dict() for i in choices]
         return {
             "type_choice": "items",
@@ -71,7 +77,11 @@ class Board():
 
     def get_random_misfortune(self):
         choice = random.choices(self.misfortunes)
-        choice = choice.to_dict()
+        
+        print("CHOICES IN MISFORTUNES: ", choice)
+        choice = [m.to_dict() for m in choice]
+        
+        print("CHOICES IN MISFORTUNES AFTER: ", choice)
         return {
             "type_choice": "misfortune",
             "choices": choice
@@ -79,7 +89,7 @@ class Board():
 
     def get_random_love_interests(self, player: people.Player):
         matched_people = self.match_people(player.preference)
-        choices = random.choices(matched_people, k=3)
+        choices = random.sample(matched_people, k=3)
         choices = [p.to_dict() for p in choices]
         return {
             "type_choice": "people",
@@ -89,7 +99,7 @@ class Board():
     def get_random_special_events(self, player: people.Player):
         matched_events = self.match_special_events(player)
         choice = random.choices(matched_events)
-        choice = choice.to_dict()
+        choice = [se.to_dict() for se in choice]
         return {
             "type_choice": "special_event",
             "choices": choice
@@ -101,18 +111,20 @@ class Board():
             possibilities.append("special")
 
         choice = random.choice(possibilities)
-
+        print("CHOICE: ", choice)
         if choice == "items":
             return self.get_random_items()
         if choice == "misfortunes":
             return self.get_random_misfortune()
-        if choice == "investment":
+        if choice == "investments":
             return self.get_random_investments()
         if choice == "special":
             return self.get_random_special_events(player)
 
     def get_choices(self, player: people.Player, roll: int):
+        print("PLAYER_POS: ", player.position)
         current_pos = player.position + roll
+        print("CURRENT_POS", current_pos)
         if current_pos > 49:
             current_pos = 49
             return {

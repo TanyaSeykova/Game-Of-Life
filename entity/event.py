@@ -1,12 +1,14 @@
 from enum import IntEnum
 import json
 import random
-from entity import people
 
 class Education(IntEnum):
     UNIVERSITY = 1
     COURSES = 2
     NONE = 3
+    
+    def to_json(self):
+        return self.value
 
 class Job:
     def __init__(self, name: str, base_salary: int, required_qualification: Education):
@@ -43,6 +45,9 @@ class Type_Investment(IntEnum):
     STOCK = 1
     REAL_ESTATE = 2
     LAND = 3
+    
+    def to_json(self):
+        return self.value
 
 class Investment(Event):
     def __init__(self, name, description, base_price, type_investment):
@@ -60,7 +65,7 @@ class Investment(Event):
             "description": self.description,
             "base_price": self.base_price,
             "growth_index": self.growth_index,
-            "type_investment": self.type_investment.value
+            "type_investment": self.type_investment
         }
 
     def to_json(self):
@@ -90,6 +95,9 @@ class Side_Effect(IntEnum):
     LOSE_REAL_ESTATE = 2
     LOSE_LAND = 3
     NONE = 4
+    
+    def to_json(self):
+        return self.value
 
 class Misfortune(Event):
     def __init__(self, name: str, description: str, happiness: int, money: int, side_effects: Side_Effect):
@@ -118,15 +126,15 @@ class Special_Event(Event):
         self.money = money
         self.requirements = requirements
         
-    def can_have_event(self, player: people.Player):
+    def can_have_event(self, player):
         if self.requirements == {}:
             return True
         
-        if self.requirements["relationship_status"]:
+        if "relationship_status" in self.requirements:
             if player.relationship not in self.requirements["relationship_status"]:
                 return False
             
-        if self.requirements["min_num_children"]:
+        if "min_num_children" in self.requirements:
             if player.children < self.requirements["min_num_children"]:
                 return False
             

@@ -21,6 +21,10 @@ td {
     text-align: center;
     font-size: 2em;
     font-weight: bold;
+    width: 2em;
+    height: 2em;
+    max-width: 2em;
+    max-height: 2em;
 }
 
 .red{
