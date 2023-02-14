@@ -6,6 +6,7 @@ class Education(IntEnum):
     UNIVERSITY = 1
     COURSES = 2
     NONE = 3
+    NOT_SELECTED = 4
     
     def to_json(self):
         return self.value
@@ -14,7 +15,7 @@ class Job:
     def __init__(self, name: str, base_salary: int, required_qualification: Education):
         self.name = name
         self.base_salary = base_salary
-        self.growth_index = round(random.uniform(1.1, 1.5), 2)
+        self.growth_index = round(random.uniform(1.05, 1.1), 2)
         self.required_qualification = required_qualification
 
     def is_qualified(self, qualification) -> bool:
@@ -56,8 +57,8 @@ class Investment(Event):
         self.growth_index = round(random.uniform(0.5, 2), 2)
         self.type_investment = type_investment
     
-    def get_current_value(self, years_owned):
-        return self.base_price * pow(self.growth_index, years_owned)
+    def get_current_value(self):
+        return self.base_price * self.growth_index
     
     def to_dict(self):
         return {

@@ -125,7 +125,7 @@ class Board():
         print("PLAYER_POS: ", player.position)
         current_pos = player.position + roll
         print("CURRENT_POS", current_pos)
-        if current_pos > 49:
+        if current_pos >= 49:
             current_pos = 49
             return {
                 "type_choice": "finished",
@@ -133,7 +133,7 @@ class Board():
             }
 
         if 1 <= current_pos <= 6:
-            if player.education == event.Education.NONE:
+            if player.education == event.Education.NOT_SELECTED:
                 return {
                     "type_choice": "education",
                     "choices": []

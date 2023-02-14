@@ -68,7 +68,7 @@ class Player:
         self.happiness = random.randint(0, MAX_START_HAPPINESS)
         self.is_finished = False
         self.position = 0
-        self.education = event.Education.NONE # None
+        self.education = event.Education.NOT_SELECTED
         self.job = (None, 0) # job and years on position
         self.investments = []
         self.relationship = Relationship.SINGLE # Single
@@ -104,6 +104,7 @@ class Player:
     def process_education(self, index_choice: int):
         if index_choice == 0: # None
             self.money += 3000
+            self.education = event.Education.NONE
         if index_choice == 1: # Courses
             self.money -= 1000
             self.education = event.Education.COURSES
@@ -113,7 +114,7 @@ class Player:
         
     
     def process_job(self, index_choice: int, choices: List[event.Job]):
-        self.job = (choices[index_choice], 1)
+        self.job = (choices[index_choice], 0)
     
     def process_investment(self, index_choice: int, choices: List[event.Investment]):
         self.investments.append(choices[index_choice])
@@ -129,6 +130,7 @@ class Player:
     
     def process_misfortune(self, choices: List[event.Misfortune]):
         choice = choices[0]
+        print("MONEY: ", choice.money, type(choice.money))
         self.money += choice.money
         self.happiness += choice.happiness
         
@@ -161,13 +163,15 @@ class Player:
             self.children += 1
     
     def process_turn_pass(self):
-        self.job = (self.job[0], self.job[1] + 1)
-        turn_wage = self.job[0].base_salary * (self.job[0].growth_index**self.job[1])
+        if self.job != (None, 0):
+            self.job = (self.job[0], self.job[1] + 1)
+            turn_wage = self.job[0].base_salary * (self.job[0].growth_index**self.job[1])
         
-        self.money += turn_wage
+            self.money += turn_wage
     
     def process_choice(self, current_choices: dict, index_choice: int):
         print("CURRENT CHOICE: ", current_choices)
+        self.process_turn_pass()
         type_choice = current_choices["type_choice"]
         choices = current_choices["choices"]
         
@@ -185,6 +189,16 @@ class Player:
             self.process_people(index_choice, json_array_to_people_list(choices))
         elif type_choice == "special_event":
             self.process_special_event(json_array_to_special_event_list(choices))
+        
+    def evaluate_player(self):
+        sum = 0
+        sum += self.money * 2
+        sum += self.happiness * 10
+        sum += self.children * 300
+        for investment in self.investments:
+            sum += investment.get_current_value()
+        
+        return sum
         
 
 # mappers

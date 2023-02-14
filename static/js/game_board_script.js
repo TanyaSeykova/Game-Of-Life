@@ -36,15 +36,28 @@ const mapSideEffect = {
 
 var playerOnTurn = 1
 var currentChoices = null
+var player_1_is_finished = false
+var player_2_is_finished = false
 
 function jobToString(job) {
     if (job == null) {
         return "Без"
     }
     job = JSON.parse(job)
-    return String.fromCharCode(job["name"])
+    return job.name
 }
 
+function investmentsToString(investments) {
+    if (investments == null) {
+        return ""
+    }
+    let result_array = []
+    investments.forEach(investment => {
+        result_array.push(investment["name"])
+    });
+
+    return result_array.join(", ")
+}
 
 $.ajax({
     type: "GET",
@@ -58,18 +71,16 @@ function populatePlayers(players) {
     let player1 = JSON.parse(players["player1"])
     let player2 = JSON.parse(players["player2"])
 
-    console.log(player1)
     document.getElementById("name_span_1").textContent = player1["name"]
     document.getElementById("symbol_span_1").textContent = player1["symbol"]
     document.getElementById("money_span_1").textContent = player1["money"]
     document.getElementById("happiness_span_1").textContent = player1["happiness"]
-    console.log("EDUCATION: ", player1["education"])
     document.getElementById("education_span_1").textContent = mapEducation[player1["education"]]
     document.getElementById("children_span_1").textContent = player1["children"]
     document.getElementById("relationship_span_1").textContent = mapRelationShip[player1["relationship"]]
-    document.getElementById("investments_span_1").textContent = player1["investments"].join(', ')
+    document.getElementById("investments_span_1").textContent = investmentsToString(player1["investments"])
     document.getElementById("job_span_1").textContent = jobToString(player1["job"])
-    document.getElementById("job_years_span_1").textContent =player1["job_years"]
+    document.getElementById("job_years_span_1").textContent = player1["job_years"]
 
     document.getElementById("name_span_2").textContent = player2["name"]
     document.getElementById("symbol_span_2").textContent = player2["symbol"]
@@ -78,36 +89,44 @@ function populatePlayers(players) {
     document.getElementById("education_span_2").textContent = mapEducation[player2["education"]]
     document.getElementById("children_span_2").textContent = player2["children"]
     document.getElementById("relationship_span_2").textContent = mapRelationShip[player2["relationship"]]
-    document.getElementById("investments_span_2").textContent = player2["investments"].join(', ')
+    document.getElementById("investments_span_2").textContent = investmentsToString(player2["investments"])
     document.getElementById("job_span_2").textContent = jobToString(player2["job"])
     document.getElementById("job_years_span_2").textContent = player2["job_years"]
 
     putSymbolOnPosition(player1, player2)
+    lockButtons(false)
 }
 
 // add event listeners
 window.addEventListener("load", (event) => {
+    lockButtons(false)
+
     document.getElementById("button_1_roll").addEventListener("click", rollAndGetChoices)
     document.getElementById("button_2_roll").addEventListener("click", rollAndGetChoices)
 
-    document.getElementById("button_choices_education_none").addEventListener("click", () => {sendChoice(0)})
-    document.getElementById("button_choices_education_courses").addEventListener("click", () => {sendChoice(1)})
-    document.getElementById("button_choices_education_university").addEventListener("click", () => {sendChoice(2)})
-    document.getElementById("button_choices_investment_1").addEventListener("click", () => {sendChoice(0)})
-    document.getElementById("button_choices_investment_2").addEventListener("click", () => {sendChoice(1)})
-    document.getElementById("button_choices_investment_3").addEventListener("click", () => {sendChoice(2)})
-    document.getElementById("button_choices_item_1").addEventListener("click", () => {sendChoice(0)})
-    document.getElementById("button_choices_item_2").addEventListener("click", () => {sendChoice(1)})
-    document.getElementById("button_choices_item_3").addEventListener("click", () => {sendChoice(2)})
-    document.getElementById("button_choices_job_1").addEventListener("click", () => {sendChoice(0)})
-    document.getElementById("button_choices_job_2").addEventListener("click", () => {sendChoice(1)})
-    document.getElementById("button_choices_job_3").addEventListener("click", () => {sendChoice(2)})
-    document.getElementById("button_choices_people_1").addEventListener("click", () => {sendChoice(0)})
-    document.getElementById("button_choices_people_2").addEventListener("click", () => {sendChoice(1)})
-    document.getElementById("button_choices_people_3").addEventListener("click", () => {sendChoice(2)})
+    document.getElementById("button_choices_education_none").addEventListener("click", () => { sendChoice(0) })
+    document.getElementById("button_choices_education_courses").addEventListener("click", () => { sendChoice(1) })
+    document.getElementById("button_choices_education_university").addEventListener("click", () => { sendChoice(2) })
+    document.getElementById("button_choices_investment_1").addEventListener("click", () => { sendChoice(0) })
+    document.getElementById("button_choices_investment_2").addEventListener("click", () => { sendChoice(1) })
+    document.getElementById("button_choices_investment_3").addEventListener("click", () => { sendChoice(2) })
+    document.getElementById("button_choices_item_1").addEventListener("click", () => { sendChoice(0) })
+    document.getElementById("button_choices_item_2").addEventListener("click", () => { sendChoice(1) })
+    document.getElementById("button_choices_item_3").addEventListener("click", () => { sendChoice(2) })
+    document.getElementById("button_choices_job_1").addEventListener("click", () => { sendChoice(0) })
+    document.getElementById("button_choices_job_2").addEventListener("click", () => { sendChoice(1) })
+    document.getElementById("button_choices_job_3").addEventListener("click", () => { sendChoice(2) })
+    document.getElementById("button_choices_people_1").addEventListener("click", () => { sendChoice(0) })
+    document.getElementById("button_choices_people_2").addEventListener("click", () => { sendChoice(1) })
+    document.getElementById("button_choices_people_3").addEventListener("click", () => { sendChoice(2) })
 
-    document.getElementById("button_misfortune").addEventListener("click", () => {sendChoice(0)})
-    document.getElementById("button_special_event").addEventListener("click", () => {sendChoice(0)})
+    document.getElementById("button_misfortune").addEventListener("click", () => { sendChoice(0) })
+    document.getElementById("button_special_event").addEventListener("click", () => { sendChoice(0) })
+
+    document.getElementById("skip_investment").addEventListener("click", skipEvent)
+    document.getElementById("skip_item").addEventListener("click", skipEvent)
+    document.getElementById("skip_people").addEventListener("click", skipEvent)
+    document.getElementById("skip_special_event").addEventListener("click", skipEvent)
 
 });
 
@@ -122,6 +141,7 @@ function rollAndGetChoices() {
             player_turn: playerOnTurn
         }),
         success: function (response) {
+            lockButtons(true)
             showChoices(response["generated_choices"])
             showRolled(response["rolled"])
             getPlayers()
@@ -131,7 +151,6 @@ function rollAndGetChoices() {
 
 function showChoices(choices) {
     hideChoices()
-    console.log(choices["type_choice"])
     let typeChoice = choices["type_choice"]
     let choicesOfType = choices["choices"]
     if (typeChoice == type_choice_education) {
@@ -230,19 +249,19 @@ function populateItems(choices) {
     document.getElementById("item_name_1").innerHTML = choice1["name"]
     document.getElementById("item_description_1").innerHTML = choice1["description"]
     document.getElementById("item_happiness_1").innerHTML = "+" + choice1["happiness"]
-    document.getElementById("item_price_1").innerHTML = "-" + choice1["money"]
+    document.getElementById("item_price_1").innerHTML = choice1["money"]
     document.getElementById("item_image_1").src = choice1["image"]
 
     document.getElementById("item_name_2").innerHTML = choice2["name"]
     document.getElementById("item_description_2").innerHTML = choice2["description"]
     document.getElementById("item_happiness_2").innerHTML = "+" + choice2["happiness"]
-    document.getElementById("item_price_2").innerHTML = "-" + choice2["money"]
+    document.getElementById("item_price_2").innerHTML = choice2["money"]
     document.getElementById("item_image_2").src = choice2["image"]
 
     document.getElementById("item_name_3").innerHTML = choice3["name"]
     document.getElementById("item_description_3").innerHTML = choice3["description"]
     document.getElementById("item_happiness_3").innerHTML = "+" + choice3["happiness"]
-    document.getElementById("item_price_3").innerHTML = "-" + choice3["money"]
+    document.getElementById("item_price_3").innerHTML = choice3["money"]
     document.getElementById("item_image_3").src = choice3["image"]
 }
 
@@ -277,7 +296,7 @@ function populateSpecialEvents(choices) {
     document.getElementById("special_event_name").innerHTML = choice["name"]
     document.getElementById("special_event_description").innerHTML = choice["description"]
     document.getElementById("special_event_happiness").innerHTML = "+" + choice["happiness"]
-    document.getElementById("special_event_money").innerHTML = "-" + choice["money"]
+    document.getElementById("special_event_money").innerHTML = choice["money"]
 }
 
 function getPlayers() {
@@ -285,13 +304,15 @@ function getPlayers() {
         type: "GET",
         url: "/get_players",
         success: function (response) {
+            if(isFinished(response)) {
+                getScore()
+            }
             populatePlayers(response)
         }
     });
 }
 
 function putSymbolOnPosition(player1, player2) {
-    console.log(player1["position"])
     if (player1["position"] == "0" && player2["position"] == "0") {
         return
     }
@@ -308,7 +329,6 @@ function putSymbolOnPosition(player1, player2) {
         } else {
             col1 = width_table - (pos1 - row1 * width_table)
         }
-        console.log("Row, col: ", row1, col1)
         table.rows[row1].cells[col1].innerHTML = ""
         table.rows[row1].cells[col1].innerHTML = table.rows[row1].cells[col1].innerHTML + player1["symbol"]
     }
@@ -350,9 +370,97 @@ function sendChoice(indexChoice) {
             index_choice: indexChoice
         }),
         success: function (response) {
-            console.log(response)
             getPlayers()
             hideChoices()
+            changeTurn()
+            lockButtons(false)
         }
     });
+}
+
+function lockButtons(lockBoth) {
+    // if the player has to choose, lock both
+    // otherwise, lock the one that is not on turn
+
+    if (lockBoth) {
+        document.getElementById("button_1_roll").disabled = true
+        document.getElementById("button_2_roll").disabled = true
+    } else {
+        if (playerOnTurn == 1) {
+            document.getElementById("button_1_roll").disabled = false
+            document.getElementById("button_2_roll").disabled = true
+        } else {
+            document.getElementById("button_1_roll").disabled = true
+            document.getElementById("button_2_roll").disabled = false
+        }
+    }
+    if (player_1_is_finished) document.getElementById("button_1_roll").disabled = true
+    if (player_2_is_finished) document.getElementById("button_2_roll").disabled = true
+}
+
+function changeTurn() {
+    if (playerOnTurn == 1) {
+        playerOnTurn = 2
+    } else {
+        playerOnTurn = 1
+    }
+    if (player_1_is_finished) playerOnTurn = 2
+    if (player_2_is_finished) playerOnTurn = 1
+
+    console.log(playerOnTurn)
+}
+
+function skipEvent() {
+    $.ajax({
+        type: "POST",
+        url: "/skip_event",
+        contentType: "application/json",
+        data: JSON.stringify({
+            player_turn: playerOnTurn
+        }),
+        success: function (response) {
+            getPlayers()
+            hideChoices()
+            changeTurn()
+            lockButtons(false)
+        }
+    });
+}
+
+function isFinished(players) {
+    let player1 = JSON.parse(players["player1"])
+    let player2 = JSON.parse(players["player2"])
+    if (player1["is_finished"] == true) {
+        player_1_is_finished = true
+    }
+    if (player2["is_finished"] == true) {
+        player_2_is_finished = true
+    }
+    console.log(player_1_is_finished, player_2_is_finished, player_1_is_finished & player_2_is_finished)
+    return player_1_is_finished & player_2_is_finished
+}
+function getScore() {
+    $.ajax({
+        type: "GET",
+        url: "/get_results",
+        success: function (response) {
+            handleResult(response)
+        }
+    });
+}
+
+function handleResult(scores) {
+    let score1 = JSON.parse(scores["player_1_score"])
+    let score2 = JSON.parse(scores["player_2_score"])
+
+    lockButtons(true)
+    resultString = "Резултатите са - Играч 1, " + score1 + "точки, Играч 2 - " + score2 + "точки. "
+    if (score1 == score2) resultString += "Резултатът е равен."
+    else {
+        resultString += "Победител е Играч "
+        if (score1 < score2) resultString += "2"
+        else resultString += "1"
+    }
+    resultString += " Благодаря за играта!"
+    alert(resultString)
 }
