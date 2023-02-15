@@ -20,6 +20,140 @@
             "image": "https://ficusplant.org/wp-content/uploads/2020/12/fikus-kauchukonosnyy-sort-robusta_-2-300x300-1.jpg",
             "happiness": 10,
             "money": -10
+        },
+        {
+            "name": "Кола",
+            "description": "Писнало ти е от градски транспорт, ей. Сега май не е много момент да си взимаш кола, но всичко за удобството.",
+            "image": "https://hr.cdn.mazda.media/1020fcab69854877a172000e8caf4efb/99087c7bb6c04ae4b824ce49aea4a921.png?rnd=4ad48b",
+            "happiness": 500,
+            "money": -15000
+        },
+        {
+            "name": "Колело",
+            "description": "Най-удобният начин за предвижване в София, на всичките 3 велоалеи.",
+            "image": "https://s13emagst.akamaized.net/products/43383/43382639/images/res_645401667cf60349a9ab0d3fc7670e4f.jpg?width=720&height=720&hash=4D8DE65BBF4358CDC13F3CA588A098F8",
+            "happiness": 200,
+            "money": -500
+        },
+        {
+            "name": "Годишен абонамент за Нетфликс",
+            "description": "След тази покупка трябва да се откажеш официално от българското си гражданство, но има сладко приложение.",
+            "image": "https://cdn-images-1.medium.com/max/1200/1*ty4NvNrGg4ReETxqU2N3Og.png",
+            "happiness": 200,
+            "money": -200
+        },
+        {
+            "name": "Книга",
+            "description": "Цял свят между две корици. Имаш и зелена светлина да превърнеш четенето на книги в целия си характер.",
+            "image": "https://booxoul.com/wp-content/uploads/2022/07/Project-Hail-Mary-is-a-Sci-Fi-Novel-That-Explores-the-Terrain-Outside-the-Confines-of-Time-and-Space.jpeg",
+            "happiness": 70,
+            "money": -30
+        },
+        {
+            "name": "Каяк",
+            "description": "Греба веднъж на Панчарево и вече си готов за Олимпиадата. Вероятно ще седи в коридора и ще събира прах, но ще можеш да кажеш, че имаш каяк.",
+            "image": "https://www.bg-kayak.com/wp-content/uploads/2019/12/kayak_Borneo_diag-850x392.jpg",
+            "happiness": 150,
+            "money": -400
+        },
+        {
+            "name": "Спа уикенд във Велинград",
+            "description": "Защото сме гъзари. Защото джакузи. Няма нужда от друго обяснение.",
+            "image": "https://cf.bstatic.com/xdata/images/xphoto/max1440/48362214.jpg?k=3a2697b4378350acde99d30be1759be821afa4c1c32524a59cd4aa4192640a27&o=",
+            "happiness": 250,
+            "money": -1000
+        },
+        {
+            "name": "Био козметичен комплект",
+            "description": "Вече си готов да се свържеш с природата и да миришеш на билков чай, преди да си легнеш. ",
+            "image": "https://shopthebest.eu/userfiles/productlargeimages/product_17116.jpg",
+            "happiness": 20,
+            "money": -200
+        },
+        {
+            "name": "Био чай от Зоя",
+            "description": "Не схващаш какво точно е биото на този чай, като всички чайове на теория са треви от планината, но ти харесва естетиката.",
+            "image": "https://pub.zoya.bg/upload/productimage/11081-34935-3.jpg?1647345214",
+            "happiness": 10,
+            "money": -20
+        },
+        {
+            "name": "Вечеря в ресторанта на шеф Манчев",
+            "description": "Този на Витошка. Искаш веднъж да си направиш кефа, и, ако не стане, на 100 до 200 метра все ще се намери някоя дюнерджийница.",
+            "image": "https://s13emagst.akamaized.net/products/50685/50684163/images/res_80c3d5b430a6e176e876e6f9a78c6c5e.jpg",
+            "happiness": 50,
+            "money": -200
+        },
+        {
+            "name": "PS5",
+            "description": "В следващите няколко седмици да не те търсят, заредил си се, имаш игри за играене.",
+            "image": "https://s13emagst.akamaized.net/products/32502/32501277/images/res_d5266fea2bd1d275a3928985e005cba0.jpg",
+            "happiness": 250,
+            "money": -2000
+        },
+        {
+            "name": "Hogwarts Legacy",
+            "description": "Готов си да допринесеш към рекордите на Hogwarts Legacy. Тъй като така и не си получи писмото, поне това можеш да направиш.",
+            "image": "https://www.gamingdragons.com/images/game_img/hogwartslegacyps5slo3590fsd.jpg",
+            "happiness": 50,
+            "money": -200
+        },
+        {
+            "name": "Дрешки",
+            "description": "Защото гардеробът вкъщи има още няколко квадратни сантиметра свободно място, а това е недопустимо.",
+            "image": "https://blog.japanwondertravel.com/wp-content/uploads/2021/10/Japanese-clothing-store.jpg",
+            "happiness": 30,
+            "money": -500
+        },
+        {
+            "name": "Airfryer",
+            "description": "Който си е взел, родил се е. И е почнал да яде повече скара.",
+            "image": "https://instantpot.bg/wp-content/uploads/instant-vortex-plus-air-fryer-cc-single-plastic-01.jpg",
+            "happiness": 50,
+            "money": -200
+        },
+        {
+            "name": "Нов телевизор",
+            "description": "Високо качество, възможно най-големия размер, искаш да осветява хола ти като слънцето.",
+            "image": "https://media.tegna-media.com/assets/WZDK/images/ead01365-7844-4aed-8008-13f8c4cc93c7/ead01365-7844-4aed-8008-13f8c4cc93c7_750x422.jpg",
+            "happiness": 150,
+            "money": -2000
+        },
+        {
+            "name": "Скъпарски маратонки за бягане",
+            "description": "Обикновените маратонки са за слабаци. Ако не оставиш половин заплата за маратонки, които след 1-2 маратона и няколко съботни 5km runs се износват, не си взимал правилни решения. ",
+            "image": "https://www.outsideonline.com/wp-content/uploads/2017-07-24_parent/2017-07-24_21/6a00d83453140969e20133f4670910970b-500wi_0.jpeg",
+            "happiness": 60,
+            "money": -1000
+        },
+        {
+            "name": "Билет за театрално представление",
+            "description": "Препоръчаха ти ПОП - ФОЛК ХРОНИКИ: БЕЛИ ПТИЦИ И КУРШУМИ, в Малък градски театър. Само трябва да си намериш компания.",
+            "image": "https://api.finmag.bg/storage/credirect/blog/images/1582202356.jpg",
+            "happiness": 50,
+            "money": -50
+        },
+        {
+            "name": "Нов лаптоп",
+            "description": "Дойде денят да оставиш верният ти стар другар и да си купиш по-добър. ",
+            "image": "https://ardes.bg/uploads/p/acer-nitro-5-an515-56-54ea-422675.jpg",
+            "happiness": 200,
+            "money": -3000
+        },
+        {
+            "name": "Ароматни свещи",
+            "description": "Основно за естетиката, но може да се научиш да се наслаждаваш на огъня. ",
+            "image": "https://cdn.shopify.com/s/files/1/0072/8688/2371/files/Slader_candels_www.jpg?v=1667119641",
+            "happiness": 10,
+            "money": -70
+        },
+        {
+            "name": "Посещение на Ескейп стая",
+            "description": "Добро място да накараш приятелите си да се чувстват неадекватни или да ги уплашиш. Препоръчаха ти Тайната на Криптос.",
+            "image": "https://emotions.bg/storage/17/44557268_1848524665182702_2954318530436136960_n-min.jpg",
+            "happiness": 80,
+            "money": -50
         }
+        
     ]
 }

@@ -46,7 +46,6 @@ class PotentialPartner:
             sort_keys=True, indent=4)
     
     def match_preference(self, preference: Preference):
-        print("Gender, preference: ", self.gender, preference)
         return self.gender == preference
     
     def to_dict(self):
@@ -82,6 +81,7 @@ class Player:
     
     def get_investments(self):
         return [i.to_json() for i in self.investments]
+    
     def to_dict(self):
         return {
             'name': self.name,
@@ -130,7 +130,6 @@ class Player:
     
     def process_misfortune(self, choices: List[event.Misfortune]):
         choice = choices[0]
-        print("MONEY: ", choice.money, type(choice.money))
         self.money += choice.money
         self.happiness += choice.happiness
         
@@ -192,7 +191,7 @@ class Player:
         
     def evaluate_player(self):
         sum = 0
-        sum += self.money * 2
+        sum += self.money 
         sum += self.happiness * 10
         sum += self.children * 300
         for investment in self.investments:

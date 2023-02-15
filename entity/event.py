@@ -18,7 +18,7 @@ class Job:
         self.growth_index = round(random.uniform(1.05, 1.1), 2)
         self.required_qualification = required_qualification
 
-    def is_qualified(self, qualification) -> bool:
+    def is_qualified(self, qualification: Education) -> bool:
         if qualification <= self.required_qualification:
             return True
         return False
@@ -51,14 +51,14 @@ class Type_Investment(IntEnum):
         return self.value
 
 class Investment(Event):
-    def __init__(self, name, description, base_price, type_investment):
+    def __init__(self, name: str, description: str, base_price: int, type_investment: Type_Investment):
         super().__init__(name, description)
         self.base_price = base_price
         self.growth_index = round(random.uniform(0.5, 2), 2)
         self.type_investment = type_investment
     
     def get_current_value(self):
-        return self.base_price * self.growth_index
+        return -self.base_price * self.growth_index
     
     def to_dict(self):
         return {
@@ -73,7 +73,7 @@ class Investment(Event):
         return json.dumps(self.to_dict())
 
 class Item(Event):
-    def __init__(self, name: str, description: str, image: str, happiness: str, money: str):
+    def __init__(self, name: str, description: str, image: str, happiness: int, money: int):
         super().__init__(name, description)
         self.image = image
         self.happiness = happiness
@@ -121,7 +121,7 @@ class Misfortune(Event):
 
 
 class Special_Event(Event):
-    def __init__(self, name, description, happiness, money, requirements):
+    def __init__(self, name: str, description: str, happiness: int, money: int, requirements: dict):
         super().__init__(name, description)
         self.happiness = happiness
         self.money = money

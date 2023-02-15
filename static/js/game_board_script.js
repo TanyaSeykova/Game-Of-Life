@@ -52,8 +52,14 @@ function investmentsToString(investments) {
         return ""
     }
     let result_array = []
+    console.log(investments)
     investments.forEach(investment => {
-        result_array.push(investment["name"])
+        console.log(investment)
+        console.log(typeof(investment))
+        console.log(investment["name"])
+        console.log(investment.name)
+        let investmentObj = JSON.parse(investment)
+        result_array.push(investmentObj.name)
     });
 
     return result_array.join(", ")
@@ -73,7 +79,7 @@ function populatePlayers(players) {
 
     document.getElementById("name_span_1").textContent = player1["name"]
     document.getElementById("symbol_span_1").textContent = player1["symbol"]
-    document.getElementById("money_span_1").textContent = player1["money"]
+    document.getElementById("money_span_1").textContent = Math.ceil(player1["money"])
     document.getElementById("happiness_span_1").textContent = player1["happiness"]
     document.getElementById("education_span_1").textContent = mapEducation[player1["education"]]
     document.getElementById("children_span_1").textContent = player1["children"]
@@ -84,7 +90,7 @@ function populatePlayers(players) {
 
     document.getElementById("name_span_2").textContent = player2["name"]
     document.getElementById("symbol_span_2").textContent = player2["symbol"]
-    document.getElementById("money_span_2").textContent = player2["money"]
+    document.getElementById("money_span_2").textContent = Math.ceil(player2["money"])
     document.getElementById("happiness_span_2").textContent = player2["happiness"]
     document.getElementById("education_span_2").textContent = mapEducation[player2["education"]]
     document.getElementById("children_span_2").textContent = player2["children"]
@@ -432,13 +438,17 @@ function isFinished(players) {
     let player2 = JSON.parse(players["player2"])
     if (player1["is_finished"] == true) {
         player_1_is_finished = true
+        changeTurn()
     }
     if (player2["is_finished"] == true) {
         player_2_is_finished = true
+        changeTurn()
     }
+    
     console.log(player_1_is_finished, player_2_is_finished, player_1_is_finished & player_2_is_finished)
     return player_1_is_finished & player_2_is_finished
 }
+
 function getScore() {
     $.ajax({
         type: "GET",
@@ -450,11 +460,11 @@ function getScore() {
 }
 
 function handleResult(scores) {
-    let score1 = JSON.parse(scores["player_1_score"])
-    let score2 = JSON.parse(scores["player_2_score"])
+    let score1 = Math.ceil(JSON.parse(scores["player_1_score"]))
+    let score2 = Math.ceil(JSON.parse(scores["player_2_score"]))
 
     lockButtons(true)
-    resultString = "Резултатите са - Играч 1, " + score1 + "точки, Играч 2 - " + score2 + "точки. "
+    resultString = "Резултатите са - Играч 1, " + score1 + " точки, Играч 2 - " + score2 + " точки. "
     if (score1 == score2) resultString += "Резултатът е равен."
     else {
         resultString += "Победител е Играч "

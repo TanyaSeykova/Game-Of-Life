@@ -56,9 +56,7 @@ class Board():
     def get_random_investments(self):
         
         choices = random.sample(self.investments, k=3)
-        print("CHOICES IN INVESTMENT: ", choices)
         choices = [i.to_dict() for i in choices]
-        print("CHOICES IN INVESTMENT AFTER: ", choices)
         return {
             "type_choice": "investments",
             "choices": choices
@@ -67,7 +65,6 @@ class Board():
     def get_random_items(self):
         
         choices = random.sample(self.items, k=3)
-        print("CHOICES IN ITEMS: ", choices)
         
         choices = [i.to_dict() for i in choices]
         return {
@@ -78,10 +75,8 @@ class Board():
     def get_random_misfortune(self):
         choice = random.choices(self.misfortunes)
         
-        print("CHOICES IN MISFORTUNES: ", choice)
         choice = [m.to_dict() for m in choice]
         
-        print("CHOICES IN MISFORTUNES AFTER: ", choice)
         return {
             "type_choice": "misfortune",
             "choices": choice
@@ -122,9 +117,7 @@ class Board():
             return self.get_random_special_events(player)
 
     def get_choices(self, player: people.Player, roll: int):
-        print("PLAYER_POS: ", player.position)
         current_pos = player.position + roll
-        print("CURRENT_POS", current_pos)
         if current_pos >= 49:
             current_pos = 49
             return {
