@@ -106,7 +106,6 @@ class Board():
             possibilities.append("special")
 
         choice = random.choice(possibilities)
-        print("CHOICE: ", choice)
         if choice == "items":
             return self.get_random_items()
         if choice == "misfortunes":

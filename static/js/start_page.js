@@ -19,10 +19,8 @@ $(document).ready(function () {
         ]
       }),
       success: function (response) {
-        console.log(response)
         if (response["error"]) {
           alert(response["error"])
-          console.log(window.location.href)
         } else {
           window.location.href = "game_board"
         }
@@ -34,9 +32,6 @@ $(document).ready(function () {
 function open_game_board() {
   $.ajax({
     type: "GET",
-    url: "/redirect_game_board",
-    success: function (response) {
-      console.log(response);
-    }
+    url: "/redirect_game_board"
   });
 }

@@ -25,7 +25,7 @@ def home():
 @app.route("/process_data", methods=["POST"])
 def process_data():
     data = request.get_json()
-    players, err = initialize_game.ValidatePlayers(data)
+    players, err = initialize_game.validate_players(data)
     if err != "":
         return jsonify({"error": err})
     
@@ -51,7 +51,7 @@ def game_board():
 def roll_and_give_choices():
     data = request.get_json()
     roll = play_game.roll_dice()
-    player_turn = cmnmapper.requestToPlayerTurn(data)
+    player_turn = cmnmapper.request_to_player_turn(data)
     global current_choices
     if player_turn == 1:
         current_choices = game_board_var.get_choices(player1, roll)
@@ -78,7 +78,7 @@ def get_players():
 @app.route("/process_choice", methods=["POST"])
 def process_choice():
     data = request.get_json()
-    player_turn = cmnmapper.requestToPlayerTurn(data)
+    player_turn = cmnmapper.request_to_player_turn(data)
     index_choice = data["index_choice"]
     if player_turn == 1:
         player1.process_choice(current_choices, index_choice)
@@ -89,7 +89,7 @@ def process_choice():
 @app.route("/skip_event", methods=["POST"])
 def skip_event():
     data = request.get_json()
-    player_turn = cmnmapper.requestToPlayerTurn(data)
+    player_turn = cmnmapper.request_to_player_turn(data)
     if player_turn == 1:
         player1.process_turn_pass()
     else:

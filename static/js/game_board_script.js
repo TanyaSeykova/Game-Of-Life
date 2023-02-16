@@ -52,12 +52,7 @@ function investmentsToString(investments) {
         return ""
     }
     let result_array = []
-    console.log(investments)
     investments.forEach(investment => {
-        console.log(investment)
-        console.log(typeof(investment))
-        console.log(investment["name"])
-        console.log(investment.name)
         let investmentObj = JSON.parse(investment)
         result_array.push(investmentObj.name)
     });
@@ -412,8 +407,6 @@ function changeTurn() {
     }
     if (player_1_is_finished) playerOnTurn = 2
     if (player_2_is_finished) playerOnTurn = 1
-
-    console.log(playerOnTurn)
 }
 
 function skipEvent() {
@@ -445,7 +438,6 @@ function isFinished(players) {
         changeTurn()
     }
     
-    console.log(player_1_is_finished, player_2_is_finished, player_1_is_finished & player_2_is_finished)
     return player_1_is_finished & player_2_is_finished
 }
 
